@@ -50,7 +50,7 @@ public class Jeu extends Personnage {
 
 
         do {
-            System.out.println("Vous voulez afficher votre personnage : 1 ou vous souhaitez le modifier : 2  ou sortir : 0");
+            System.out.println("Vous voulez afficher votre personnage : 1 ou vous souhaitez le modifier : 2 ou attaquer : 3 ou sortir : 0");
             choix = sc.nextInt();
             int choix2;
 
@@ -85,8 +85,8 @@ public class Jeu extends Personnage {
                             break;
 
                         case 4:
-                            System.out.println("Vous souhaitez changer le niveau de vie de votre personnage" + p.getAttaque() + " par : ");
-                            p.setAttaque(donnerAttaque());
+                            System.out.println("Vous souhaitez changer le niveau de vie de votre personnage" + p.getForce() + " par : ");
+                            p.setForce(donnerForce());
                             break;
 
                         case 5:
@@ -115,6 +115,7 @@ public class Jeu extends Personnage {
                             break;
                     }
                     break;
+                case 3 : attaquer(p);
                 default:
 
             }
@@ -129,7 +130,7 @@ public class Jeu extends Personnage {
         guerrier1.setNom(donnerNom());
         guerrier1.setImage(donnerImage());
         guerrier1.setVie(donnerVie());
-        guerrier1.setAttaque(donnerAttaque());
+        guerrier1.setForce(donnerForce());
         guerrier1.setArme(donnerArme());
         guerrier1.setBouclier(donnerBouclier());
         return guerrier1;
@@ -141,7 +142,7 @@ public class Jeu extends Personnage {
         magicien1.setNom(donnerNom());
         magicien1.setImage(donnerImage());
         magicien1.setVie(donnerVie());
-        magicien1.setAttaque(donnerAttaque());
+        magicien1.setForce(donnerForce());
         magicien1.setPhiltre(donnerPhiltre());
         magicien1.setSort(donnerSort());
         return magicien1;
@@ -182,16 +183,16 @@ public class Jeu extends Personnage {
         return vie;
     }
 
-    public static int donnerAttaque() {
+    public static int donnerForce() {
         System.out.println("Donnez-lui un niveau de force entre 0 et 100!");
-        int attaque = sc.nextInt();
+        int force = sc.nextInt();
         sc.nextLine();
-        if (attaque < 0 || attaque > 100) {
+        if (force < 0 || force > 100) {
             System.out.println("Tant pis, vous ne pouviez dépasser 100...");
-            attaque = 80;
+            force = 80;
         }
-        System.out.println("Il aura la force suivante " + attaque);
-        return attaque;
+        System.out.println("Il aura la force suivante " + force);
+        return force;
     }
 
     public static String donnerSort() {
@@ -238,6 +239,17 @@ public class Jeu extends Personnage {
         return bouclier;
     }
 
+    public static int attaquer(Personnage z) {
+        System.out.println("Vous souhaitez attaquer votre ennemi. Votre force est de " + z.getForce() +
+         " saisissez une force d'attaque inférieure ou égale à " +  z.getForce());
+        int frappe = sc.nextInt();
+        sc.nextLine();
+        System.out.println("Vous avez saisi " + frappe);
+        int reste = z.getForce() - frappe;
+        System.out.println("Il vous reste en force : " + reste);
+        z.setForce(reste);
+    return reste ;
+    }
 
 }
 

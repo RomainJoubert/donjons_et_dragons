@@ -7,11 +7,11 @@ public class Personnage {
     private String nom;
     private String image;
     private int vie;
-    private int attaque;
+    private int force;
 
 
     public String toString() {
-        return "Nom : " + nom + " \nImage : " + image + "\nVie : " + vie + "\nForce : " + attaque;
+        return "Nom : " + nom + " \nImage : " + image + "\nVie : " + vie + "\nForce : " + force;
     }
 
     public String getNom() {
@@ -38,12 +38,12 @@ public class Personnage {
         this.vie = vie;
     }
 
-    public int getAttaque() {
-        return attaque;
+    public int getForce() {
+        return force;
     }
 
-    public void setAttaque(int attaque) {
-        this.attaque = attaque;
+    public void setForce(int force) {
+        this.force = force;
     }
 
 
