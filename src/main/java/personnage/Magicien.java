@@ -1,31 +1,13 @@
 package personnage;
 
-import java.util.Scanner;
-
 public class Magicien extends Personnage {
-    String sort;
-    String philtre;
 
-    public void addPower() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Donnez-lui un sort");
-        sort = sc.nextLine();
-        while (sort.equals("")) {
-            System.out.println("Donnez-lui un sort");
-            sort = sc.nextLine();
-        }
-        System.out.println("Il aura le sort suivant " + sort);
-        System.out.println("Donnez-lui un philtre pour se protéger");
-        philtre = sc.nextLine();
-        while (philtre.equals("")) {
-            System.out.println("Donnez-lui un philtre pour se protéger");
-            philtre = sc.nextLine();
-        }
-        System.out.println("Il aura la protection suivante " + philtre);
-    }
+    private String sort;
+    private String philtre;
+
 
     public String toString() {
-        return super.toString()+"\nSort : " + sort + "\nPhiltre : " + philtre;
+        return super.toString() + "\nSort : " + sort + "\nPhiltre : " + philtre;
     }
 
     public String getSort() {
@@ -43,4 +25,19 @@ public class Magicien extends Personnage {
     public void setPhiltre(String philtre) {
         this.philtre = philtre;
     }
+
+
+    //        System.out.println("Vous souhaitez modifier le sort : 5 ; le philtre : 6");
+    //          sc.nextLine();
+    //        if (choix == 5) {
+    //            System.out.println("Vous souhaitez modfier le sort de votre personnage ");
+//    public void modification() {
+//            String nouveauSort = sc.nextLine();
+//            System.out.println("Voici son nouveau sort " + nouveauSort);
+//        } else if (choix == 6) {
+//            System.out.println("Vous souhaitez modfier le philtre de votre personnage ");
+//            String nouveauPhiltre = sc.nextLine();
+//            System.out.println("Voici son nouveau philtre " + nouveauPhiltre);
+//        }
+//    }
 }
