@@ -1,5 +1,8 @@
 package personnage;
 
+/**
+ * The type Magicien.
+ */
 public class Magicien extends Personnage {
 
     private String sort;
@@ -10,34 +13,40 @@ public class Magicien extends Personnage {
         return super.toString() + "\nSort : " + sort + "\nPhiltre : " + philtre;
     }
 
+    /**
+     * Gets sort.
+     *
+     * @return the sort
+     */
     public String getSort() {
         return sort;
     }
 
+    /**
+     * Sets sort.
+     *
+     * @param sort the sort
+     */
     public void setSort(String sort) {
         this.sort = sort;
     }
 
+    /**
+     * Gets philtre.
+     *
+     * @return the philtre
+     */
     public String getPhiltre() {
         return philtre;
     }
 
+    /**
+     * Sets philtre.
+     *
+     * @param philtre the philtre
+     */
     public void setPhiltre(String philtre) {
         this.philtre = philtre;
     }
 
-
-    //        System.out.println("Vous souhaitez modifier le sort : 5 ; le philtre : 6");
-    //          sc.nextLine();
-    //        if (choix == 5) {
-    //            System.out.println("Vous souhaitez modfier le sort de votre personnage ");
-//    public void modification() {
-//            String nouveauSort = sc.nextLine();
-//            System.out.println("Voici son nouveau sort " + nouveauSort);
-//        } else if (choix == 6) {
-//            System.out.println("Vous souhaitez modfier le philtre de votre personnage ");
-//            String nouveauPhiltre = sc.nextLine();
-//            System.out.println("Voici son nouveau philtre " + nouveauPhiltre);
-//        }
-//    }
 }

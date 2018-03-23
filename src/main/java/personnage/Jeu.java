@@ -1,29 +1,39 @@
 package personnage;
 
 import java.util.Scanner;
+import java.util.ArrayList;
+//import static java.lang.System.*; //permet de ne plus taper System dans le code
 
+/**
+ * The type Jeu.
+ */
 public class Jeu extends Personnage {
 
     private static Scanner sc = new Scanner(System.in);
 
+    /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     */
     public static void main(String[] args) {
 
 //        tableau qui affiche le choix des personnanges
         String tableauPersonnage[] = {"guerrier", "magicien"};
 
 
-//        boucle qui parcourt le tableau des personnages
+// -------------------boucle qui parcourt le tableau des personnages et les affiche------
         System.out.println("Liste des personnages : ");
         for (int i = 0; i < tableauPersonnage.length; i++) {
             System.out.println(tableauPersonnage[i]);
         }
         Personnage p = null;
         String toto = " ";
-        int reponse1;
+//        int reponse1;
         int choix;
-//            je remets ma variable reponse1 à nul
-//        reponse1 = sc.nextInt();
+
         String reponse;
+//        -------------Choisir le personnage que l'on veut créer----------------
         do {
             System.out.println("Veuillez choisir un personnage : ");
             reponse = sc.nextLine();
@@ -48,7 +58,7 @@ public class Jeu extends Personnage {
             }
         } while (!reponse.equals("guerrier") && !reponse.equals("magicien"));
 
-
+//----------------------affiche le menu-----------------------------------------
         do {
             System.out.println("Vous voulez afficher votre personnage : 1 ou vous souhaitez le modifier : 2 ou attaquer : 3 ou sortir : 0");
             choix = sc.nextInt();
@@ -95,9 +105,10 @@ public class Jeu extends Personnage {
                                 String nouveauSort = sc.nextLine();
                                 System.out.println("Voici son nouveau sort " + nouveauSort);
                             } else {
-                                System.out.println("Vous souhaitez modfier l'arme de votre personnage ");
-                                String nouvelleArme = sc.nextLine();
-                                System.out.println("Voici son nouvelle arme " + nouvelleArme);
+                                System.out.println("Vous souhaitez modfier les armes de votre personnage ? (O/N) ");
+                                if (sc.nextLine().equals("O")) {
+                                    ((Guerrier) p).setTableauArme(donnerArme());
+                                }
                             }
                             break;
                         case 6:
@@ -124,6 +135,12 @@ public class Jeu extends Personnage {
 
     }
 
+    /**
+     * Create guerrier personnage.
+     *
+     * @return the personnage
+     */
+//----------------------Méthode pour créer un guerrier-------------------------
     public static Personnage createGuerrier() {
         Guerrier guerrier1 = new Guerrier();
 
@@ -131,11 +148,17 @@ public class Jeu extends Personnage {
         guerrier1.setImage(donnerImage());
         guerrier1.setVie(donnerVie());
         guerrier1.setForce(donnerForce());
-        guerrier1.setArme(donnerArme());
+        guerrier1.setTableauArme(donnerArme());
         guerrier1.setBouclier(donnerBouclier());
         return guerrier1;
     }
 
+    /**
+     * Create magicien personnage.
+     *
+     * @return the personnage
+     */
+//----------------Méthode pour créer un magicien---------------------------
     public static Personnage createMagicien() {
         Magicien magicien1 = new Magicien();
 
@@ -148,6 +171,12 @@ public class Jeu extends Personnage {
         return magicien1;
     }
 
+    /**
+     * Donner nom string.
+     *
+     * @return the string
+     */
+//----------------------Méthode pour donner un nom au personnage------------------
     public static String donnerNom() {
         System.out.println("Donnez-lui un nom");
         String nom = sc.nextLine();
@@ -159,6 +188,12 @@ public class Jeu extends Personnage {
         return nom;
     }
 
+    /**
+     * Donner image string.
+     *
+     * @return the string
+     */
+//------------------Méthode pour donner une image au personnage---------------
     public static String donnerImage() {
         System.out.println("Donnez-lui une image mais qui soit une chaine de caractères !!!");
         String image = sc.nextLine();
@@ -170,6 +205,12 @@ public class Jeu extends Personnage {
         return image;
     }
 
+    /**
+     * Donner vie int.
+     *
+     * @return the int
+     */
+//-----------------------Méthode pour donner un niveau de vie au personnage--------------
     public static int donnerVie() {
         System.out.println("Donnez-lui un niveau de vie entre 0 et 100");
         int vie = sc.nextInt();
@@ -183,6 +224,12 @@ public class Jeu extends Personnage {
         return vie;
     }
 
+    /**
+     * Donner force int.
+     *
+     * @return the int
+     */
+//---------------------------Méthode pour donner un niveau de force au personnage--------
     public static int donnerForce() {
         System.out.println("Donnez-lui un niveau de force entre 0 et 100!");
         int force = sc.nextInt();
@@ -195,6 +242,12 @@ public class Jeu extends Personnage {
         return force;
     }
 
+    /**
+     * Donner sort string.
+     *
+     * @return the string
+     */
+//    ----------------Méthode pour donner un sort au magicien------------------
     public static String donnerSort() {
         System.out.println("Donnez-lui un sort");
         String sort = sc.nextLine();
@@ -206,6 +259,12 @@ public class Jeu extends Personnage {
         return sort;
     }
 
+    /**
+     * Donner philtre string.
+     *
+     * @return the string
+     */
+//    -------------------Méthode pour donner un philtre au magicien-----------
     public static String donnerPhiltre() {
         System.out.println("Donnez-lui un philtre pour se protéger");
         String philtre = sc.nextLine();
@@ -217,17 +276,39 @@ public class Jeu extends Personnage {
         return philtre;
     }
 
-    public static String donnerArme() {
-        System.out.println("Donnez-lui une arme");
-        String arme = sc.nextLine();
-        while (arme.equals("")) {
+    /**
+     * Donner arme string [ ].
+     *
+     * @return the string [ ]
+     */
+// ------------------- Methode qui permet d'ajouter une arme et de la stocker dans un tableau---------------------------
+    public static String[] donnerArme() {
+        String tabWeapon[] = new String[5];
+        int cpt = 1;
+        String choice;
+        do {
             System.out.println("Donnez-lui une arme");
-            arme = sc.nextLine();
+            tabWeapon[cpt] = sc.nextLine();
+            cpt = cpt + 1 ;
+            System.out.println("Voulez-vous lui donner une autre arme ? (O/N)");
+            choice = sc.nextLine();
         }
-        System.out.println("Il aura l'arme suivante " + arme);
-        return arme;
+        while (choice.equals("O") && cpt <= 5);
+
+//        while (choice.equals("")) {
+//            System.out.println("Donnez-lui une arme");
+//            choice = sc.nextLine();
+//        }
+        System.out.println("Il aura l'arme suivante " + choice);
+        return tabWeapon;
     }
 
+    /**
+     * Donner bouclier string.
+     *
+     * @return the string
+     */
+//----------------------Méthode pour ajouter un bouclier-----------------------------------------
     public static String donnerBouclier() {
         System.out.println("Donnez-lui un bouclier");
         String bouclier = sc.nextLine();
@@ -239,10 +320,23 @@ public class Jeu extends Personnage {
         return bouclier;
     }
 
+    /**
+     * Attaquer int.
+     *
+     * @param z the z
+     * @return the int
+     */
+//--------------------Méthode pour attaquer et qui déduit le niveau de l'attaque de la force restante-------------
     public static int attaquer(Personnage z) {
         System.out.println("Vous souhaitez attaquer votre ennemi. Votre force est de " + z.getForce() +
          " saisissez une force d'attaque inférieure ou égale à " +  z.getForce());
         int frappe = sc.nextInt();
+        if (frappe > z.getForce())
+        {
+            System.out.println("Vous ne pouvez pas faire une attaque supérieure à votre force");
+            System.out.println("Saisissez votre niveau d'attaque");
+            frappe = sc.nextInt();
+        }
         sc.nextLine();
         System.out.println("Vous avez saisi " + frappe);
         int reste = z.getForce() - frappe;
@@ -250,7 +344,17 @@ public class Jeu extends Personnage {
         z.setForce(reste);
     return reste ;
     }
-
+//--------------------------------- Méthode pour stocker les personnages-----------------------------
+//    public static String[] ajouterPersonnage(Personnage p){
+//        ArrayList al = new ArrayList();
+//        al.add(p.getNom());
+//
+//        for (int i =0;  i< al.size(); i++)
+//        {
+//            System.out.println("vous venez d'ajouter le personnage " + al.get(i) + " "+ i;
+//        }
+//        return ;
+//    }
 }
 
 
