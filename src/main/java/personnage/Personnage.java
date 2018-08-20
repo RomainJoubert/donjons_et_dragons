@@ -1,5 +1,6 @@
 package personnage;
 
+//import armes.*;
 
 /**
  * The type Personnage.
@@ -9,6 +10,7 @@ public class Personnage {
     private String image;
     private int vie;
     private int force;
+//    private ArrayList<Arme> inventaireArme;
 
 
     public String toString() {

@@ -171,6 +171,7 @@ public class Jeu extends Personnage {
         return magicien1;
     }
 
+
     /**
      * Donner nom string.
      *
